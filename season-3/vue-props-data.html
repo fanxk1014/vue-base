@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>propsData-option 全局扩展的数据传递</title>
+</head>
+<body>
+    <div id="app">
+        <xiaokun></xiaokun>
+    </div>
+    <script>
+        var tabExtend = Vue.extend({
+            template:`<div>{{msg}}-{{a}}-{{b}}</div>`,
+            data:function(){
+                return{
+                    msg:'这是一个扩展标签内容'
+                }
+            },
+            props:['a','b']
+        })
+        //在挂载时，传递了数据1
+        new tabExtend({propsData:{a:1,b:2}}).$mount("xiaokun");
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>实例方法</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="reload()">更新</button>
+    </div>
+    <p>
+        <button onclick="destroy()">destroy</button>
+        <button onclick="update()">更新</button>
+        <button onclick="change()">修改</button>
+    </p>
+    <script>
+        var authorExtend = Vue.extend({
+            template:`<a :href="authorUrl">{{authorName}}</a>`,
+            data:function(){
+                return{
+                    authorUrl:'https://www.baidu.com/',
+                    authorName:'xiaokun'
+                }
+            },
+            destroyed:function(){
+                console.log("已经销毁");
+            },
+            updated:function(){
+                console.log("已经更新");
+            }
+        })
+        var vm = new authorExtend().$mount('#app');
+
+        function destroy(){
+            vm.$destroy();
+        }
+
+        function update(){
+            vm.$forceUpdate();
+        }
+
+        function change(){
+            vm.authorName = '修改啦';
+            vm.$nextTick(function(){//和钩子函数updated很像
+                console.log("nextTick");
+            });
+        }
+    </script>
+</body>
+</html>

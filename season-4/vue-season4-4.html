@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>内置事件-slot</title>
+</head>
+<body>
+    <div id="app">
+        <xiaokun>
+            <span slot="authorName">{{xiaokun.authorName}}</span>    
+            <span slot="authorSex">{{xiaokun.authorSex}}</span>    
+            <span slot="job">{{xiaokun.job}}</span>    
+        </xiaokun>
+    </div>
+    <template id="tmp">
+        <div>
+            <p>姓名：<slot name='authorName'></slot></p>
+            <p>性别：<slot name='authorSex'></slot></p>
+            <p>职业：<slot name='job'></slot></p>
+        </div>
+    </template>
+    <script>
+        var xiaokun = {
+            template:'#tmp'
+        }
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                xiaokun:{
+                    authorName:'xiaokun',
+                    authorSex:'男',
+                    job:'开发'
+                }
+            },
+            components:{
+                xiaokun:xiaokun
+            }
+        })
+    </script>
+</body>
+</html>

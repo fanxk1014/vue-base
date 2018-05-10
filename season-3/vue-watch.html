@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>Watch 选项 监控数据</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{temperature}}</p>
+        <p>
+            穿衣建议：{{clothes}}
+        </p>
+        <p>
+            <button @click="minus">minus</button>
+            <button @click="add">add</button>
+        </p>
+    </div>
+    <script>
+        
+        var clothesArr = ['羽绒服','长袖外套','短袖T']
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                num:26,
+                clothes:clothesArr[1]
+            },
+            computed:{
+                temperature:function(){
+                    return "温度："+this.num+"°C"
+                }
+            },
+            methods:{
+                add:function(){
+                    this.num++
+                },
+                minus:function(){
+                    this.num--
+                }
+            },
+            watch:{
+                // num:function(newVal,oldVal){//可以将watch监控写在构造器内部
+                //     if(newVal<10){
+                //         this.clothes=clothesArr[0]
+                //     }else if(newVal>=10 && newVal<25){
+                //         this.clothes=clothesArr[1]
+                //     }else{console.log(clothesArr[2])
+                //         this.clothes=clothesArr[2]
+                //     }
+                // }
+            }
+        })
+        vm.$watch('num',function(newVal,oldVal){//也可以将watch监控写在构造器外部，降低耦合
+            if(newVal<10){
+                this.clothes=clothesArr[0]
+            }else if(newVal>=10 && newVal<25){
+                this.clothes=clothesArr[1]
+            }else{console.log(clothesArr[2])
+                this.clothes=clothesArr[2]
+            }
+        });
+    </script>
+</body>
+</html>

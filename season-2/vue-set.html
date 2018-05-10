@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>vue-set</title>
+</head>
+<body>
+    <div id="app">
+        <!-- {{arr}} -->
+        {{count}}
+    </div>
+    <p>
+        <button onclick="add()">add</button>
+        <!-- <button onclick="insertArr()">insert</button> -->
+    </p>
+    <script>
+        var dataSource = {
+            text:'信息内容',
+            sex:'male',
+            count:0
+        }
+        var dataArr = {
+            arr:['aaa','bbb','ccc']
+        }
+        var vm = new Vue({
+            el:'#app',
+            // data:dataArr
+            data:dataSource
+        })
+        
+        function add(){
+            Vue.set(dataSource.count++);
+        }
+        function insertArr(){
+            // vm.arr[0]='222';
+            Vue.set(dataArr.arr, 0, "eee");
+        }
+    </script>
+</body>
+</html>

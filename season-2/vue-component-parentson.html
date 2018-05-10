@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>component父子组件</title>
+</head>
+<body>
+    <div id="app">
+        <xiaokun></xiaokun>
+    </div>
+    <script>
+        var son = {
+            template:`<div>这是嵌套的子组件</div>`
+        }
+        var xiaokun = {//坑：含有子组件的template中必须有一个共有的根元素，此处为div
+            template:`<div>这是一个写在构造器外部的，局部组建
+                        <son></son>
+                    </div>`,
+            components:{
+                son:son
+            }
+        }
+        var vm = new Vue({
+            el:'#app',
+            components:{
+                xiaokun:xiaokun
+            }
+        })
+    </script>
+</body>
+</html>

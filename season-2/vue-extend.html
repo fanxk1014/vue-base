@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>目录</title>
+</head>
+<body>
+    <p>
+        <a href="./"></a>
+    </p>
+    <div id="app">
+        <hehe id="abc"></hehe>
+    </div>
+    <script>
+        var authorExtend = Vue.extend({
+            template:"<a :href='authorUrl'>{{authorName}}</a>",
+            data:function(){
+                return{
+                    authorUrl:'https://www.baidu.com/',
+                    authorName:'xiaokun'
+                }
+            }
+        })
+        new authorExtend().$mount('#abc');
+    </script>
+</body>
+</html>

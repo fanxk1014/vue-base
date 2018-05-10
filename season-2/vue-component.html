@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>vue-component</title>
+</head>
+<body>
+    <div id="app">
+        <xiaokun></xiaokun>
+        <handsome></handsome>
+    </div>
+    <script>
+        // Vue.component('xiaokun', {
+        //     template:`<span>这是一个全局组件</span>`
+        // })
+        var vm = new Vue({
+            el:'#app',
+            data:{
+
+            },
+            components:{
+                xiaokun:{
+                    template:`<span>这是一个局部组件</span>`
+                },
+                handsome:{
+                    template:`<span>这是一个帅气的组件</span>`
+                }
+            }
+        })
+    </script>
+</body>
+</html>

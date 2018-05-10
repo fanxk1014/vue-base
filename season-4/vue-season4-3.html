@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>实例事件</title>
+</head>
+<body>
+    <div id="app">
+        {{count}}
+        <p>
+            <button @click="add">add</button>
+        </p>
+    </div>
+    <button onclick="minus()">minus</button>
+    <button onclick="minusOnce()">minusOnce</button>
+    <button onclick="stop()">stop</button>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                count:0
+            },
+            methods:{
+                add:function(){
+                    this.count++;
+                }
+            }
+        })
+        // on和emit要搭配起来用，on用来添加事件，emit用来调用事件
+        vm.$on('minus',function(){//可一直执行
+            console.log("执行了minus");
+            this.count--;
+        })
+        vm.$once('minusOnce',function(){//只执行一次
+            console.log("执行了minus");
+            this.count--;
+        })
+
+        function stop(){//关闭事件
+            vm.$off('minus')
+        }
+
+
+        function minus(){
+            vm.$emit('minus');//调用minus
+        }
+        function minusOnce(){
+            vm.$emit('minusOnce');//调用minusOnce
+        }
+    </script>
+</body>
+</html>

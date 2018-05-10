@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>Extends Option 扩展选项</title>
+</head>
+<body>
+    <div id="app">
+        <p>
+            {{msg}} - ${msg}
+        </p>
+        <p>
+            <button @click='add'>add</button>
+        </p>
+    </div>
+    <script>
+        var oneExtend = {
+            created:function(){
+                console.log("扩展的created");
+            },
+            methods:{
+                add:function(){
+                    console.log("扩展出来的method");
+                }
+            }
+        }
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'这是构造器中的内容'
+            },
+            extends:oneExtend,
+            delimiters:['${','}']//改变插值的符号{{}}
+        })
+    </script>
+</body>
+</html>

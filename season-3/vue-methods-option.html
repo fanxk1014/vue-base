@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>Methods Option 方法选项</title>
+</head>
+<body>
+    <div id="app">
+        {{count}}
+        <p>
+            <button @click="add(10,$event)">
+                add
+            </button>
+        </p>
+        <btn @click.native="add(3)"></btn>
+    </div>
+    <p>
+        <button onclick="vm.add(20)" >外部调用构造器里的方法</button>
+    </p>
+    <script>
+        var btnCom = {
+            template:`<button>组件add</button>`
+        }
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                count:0
+            },
+            methods:{
+                add:function(num,e){
+                    console.log("$event:",e);
+                    if(isNaN(num)==false){//num是数字
+                        return this.count+=num;
+                    }else{
+                        this.count++
+                    }
+                }
+            },
+            components:{
+                btn:btnCom
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>Mixins 混入选项操作</title>
+</head>
+<body>
+    <div id="app">
+        {{count}}
+        <p>
+            <button @click="add">add</button>
+        </p>
+    </div>
+    <script>
+        Vue.mixin({
+            beforeUpdate:function(){
+                console.log('我是全局被混入的');
+            }
+        })
+        var mix = {
+            updated:function(){
+                console.log("数据发生变法，变化为："+this.count);
+            },
+            methods:{
+                add:function(){
+                    this.count+=5;
+                }
+            }
+        }
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                count:0
+            },
+            methods:{
+                // add:function(){
+                //     this.count++;
+                // }
+            },
+            updated:function(){
+                console.log("构造器里的updated方法。")
+            },
+            mixins:[mix]
+            //混入mixins的先执行，然后执行构造器内的方法，并不是覆盖。
+        })
+    </script>
+</body>
+</html>

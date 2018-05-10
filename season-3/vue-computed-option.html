@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>computed Option 计算选项</title>
+</head>
+<body>
+    <div id="app">
+        {{handlePrice}}-{{price}}
+        <ul>
+            <li v-for="item in reverseArr">
+                {{item.name}}-{{item.title}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                price:100,
+                arrList:[
+                    {name:'tom',title:'标题1'},
+                    {name:'jack',title:'标题2'},
+                    {name:'tony',title:'标题3'},
+                    {name:'kevin',title:'标题4'},
+                ]
+            },
+            computed:{
+                handlePrice:function(){//覆盖原price
+                    return this.price = '￥'+this.price+'元'
+                },
+                reverseArr:function(){//不会覆盖原arrList
+                    return this.arrList.reverse();
+                }
+            }
+        })
+    </script>
+</body>
+</html>
